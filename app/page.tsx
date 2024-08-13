@@ -71,7 +71,7 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
                         >
                             {value}
                         </button>
@@ -80,7 +80,7 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
                         >
                             {value}
                         </button>
@@ -89,7 +89,7 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
                         >
                             {value}
                         </button>
@@ -100,7 +100,7 @@ export default function Home() {
                             onClick={() => value === 'C' ? handleClear() : value === '=' ? handleCalculate() : handleButtonClick(value)}
                             className={`${
                                 value === '=' ? 'bg-blue-700' : 'bg-purple-900'
-                            } p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold text-white`}
+                            } p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold text-white`}
                         >
                             {value}
                         </button>
