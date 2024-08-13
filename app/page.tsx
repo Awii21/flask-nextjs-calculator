@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function Home() {
     const [input, setInput] = useState('');
@@ -16,36 +16,46 @@ export default function Home() {
     };
 
     const handleCalculate = () => {
-        const [num1, operation, num2] = input.match(/(\d+)([+\-*/])(\d+)/).slice(1);
-        fetch('http://127.0.0.1:5000/api/data/calc', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                num1: parseInt(num1, 10),
-                num2: parseInt(num2, 10),
-                operation: {
-                    '+': 'add',
-                    '-': 'subtract',
-                    '*': 'multiply',
-                    '/': 'divide'
-                }[operation]
+        try {
+            const match = input.match(/(\d+)([+\-*/])(\d+)/);
+            if (!match) {
+                setError('Invalid input');
+                return;
+            }
+
+            const [num1, operation, num2] = match.slice(1);
+            fetch('http://127.0.0.1:5328/api/data/calc', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    num1: parseInt(num1, 10),
+                    num2: parseInt(num2, 10),
+                    operation: {
+                        '+': 'add',
+                        '-': 'subtract',
+                        '*': 'multiply',
+                        '/': 'divide'
+                    }[operation]
+                })
             })
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    setInput(String(data.result));
-                    setError(null);
-                }
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-                setError('Something went wrong');
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.error) {
+                        setError(data.error);
+                    } else {
+                        setInput(String(data.result));
+                        setError(null);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                    setError('Something went wrong');
+                });
+        } catch (error) {
+            setError('Invalid input');
+        }
     };
 
     return (
@@ -70,7 +80,8 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"                        >
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                        >
                             {value}
                         </button>
                     ))}
@@ -78,7 +89,8 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"                        >
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                        >
                             {value}
                         </button>
                     ))}
@@ -86,7 +98,9 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => value === 'C' ? handleClear() : value === '=' ? handleCalculate() : handleButtonClick(value)}
-                            className={`bg-${value === '=' ? 'blue-500' : 'purple-900'} p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold text-${value === '=' ? 'white' : 'white'}`}
+                            className={`${
+                                value === '=' ? 'bg-blue-700' : 'bg-purple-900'
+                            } p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold text-white`}
                         >
                             {value}
                         </button>
