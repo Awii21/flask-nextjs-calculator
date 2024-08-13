@@ -62,7 +62,7 @@ export default function Home() {
         <div className="min-h-screen flex flex-col items-center justify-center bg-cyan-950 py-10 text-black">
             <h1 className="text-4xl font-bold mb-6 text-gray-100">Calculator</h1>
             <div className='text-gray-200 text-xl font-semibold'>Frontend - Next.js | Backend - Flask</div>
-            <div className="bg-yellow-300 p-6 rounded-xl shadow-md w-80 scale-125 mt-16 transition-all duration-500">
+            <div className="bg-yellow-300 p-6 rounded-xl shadow-md w-80 scale-125 mt-16">
                 <div className="mb-4 text-right text-5xl p-2">
                     {error ? <span className="text-red-500">{error}</span> : input || '0'}
                 </div>
@@ -71,7 +71,7 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 hover:-translate-y-1 hover:-translate-y-1 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
                         >
                             {value}
                         </button>
@@ -80,7 +80,7 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 hover:-translate-y-1 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
                         >
                             {value}
                         </button>
@@ -89,7 +89,7 @@ export default function Home() {
                         <button
                             key={value}
                             onClick={() => handleButtonClick(value)}
-                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
+                            className="bg-purple-900 text-white p-4 rounded-full text-xl hover:scale-110 hover:bg-purple-800 hover:-translate-y-1 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold"
                         >
                             {value}
                         </button>
@@ -99,8 +99,8 @@ export default function Home() {
                             key={value}
                             onClick={() => value === 'C' ? handleClear() : value === '=' ? handleCalculate() : handleButtonClick(value)}
                             className={`${
-                                value === '=' ? 'bg-blue-700' : 'bg-purple-900'
-                            } p-4 rounded-full text-xl hover:scale-110 transition-all duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold text-white`}
+                                value === '=' ? 'bg-blue-700 hover:bg-blue-500' : 'bg-purple-900 hover:bg-purple-800'
+                            } p-4 rounded-full text-xl hover:scale-110 transition-all hover:-translate-y-1 duration-200 ease-in-out hover:drop-shadow-2xl hover:font-bold text-white`}
                         >
                             {value}
                         </button>
